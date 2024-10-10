@@ -48,21 +48,24 @@ public class ControlPlayer : MonoBehaviour
     // ฟังก์ชันกระโดด
     public void Jump()
     {
-        Debug.Log("Jump function called");
+        Debug.Log("Jump button clicked"); // ตรวจสอบการกดปุ่ม
         if (isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false; // อัปเดตสถานะเพื่อป้องกันการกระโดดซ้ำในขณะอยู่กลางอากาศ
+            isGrounded = false;
+            Debug.Log("Player jumped!"); // ตรวจสอบว่าผู้เล่นกระโดด
         }
     }
+
 
 
     // ตรวจสอบว่าผู้เล่นอยู่บนพื้นดินหรือไม่
     private void CheckGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f, groundLayer);
         isGrounded = hit.collider != null;
-        //Debug.Log("Is Grounded: " + isGrounded); // ดูค่า isGrounded ใน Console
+        Debug.Log("Is Grounded: " + isGrounded); // ดูค่า isGrounded ใน Console
     }
+
 
 }
